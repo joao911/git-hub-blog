@@ -1,18 +1,27 @@
-import React from "react";
+import React, { useMemo } from "react";
+import { formatDistanceToNow } from "date-fns";
 
 import { Container } from "./styles";
+import { IPost } from "../..";
+import { ptBR } from "date-fns/locale";
 
-const Posts: React.FC = () => {
+interface IPostProps {
+  item: IPost;
+}
+const Posts: React.FC<IPostProps> = ({ item }) => {
+  const distanceToNow = useMemo(() => {
+    return formatDistanceToNow(new Date(item.created_at), {
+      addSuffix: true,
+      locale: ptBR,
+    });
+  }, [item.created_at]);
+
   return (
     <Container to="/post/1">
       <div>
-        <strong>Lorem ipsum dolor sit.</strong>
-        <span>há 1 dia</span>
+        <strong>{item.title}</strong>
       </div>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos dolor iusto
-        ullam laudantium quas error ut quae, voluptatem at aliquam!...
-      </p>
+      <p>{distanceToNow}</p>
     </Container>
   );
 };

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Container = styled(Link)`
   width: 100%;
-  height: 16.25rem;
+  height: 10.25rem;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.colors["base-post"]};
   border: 1px solid ${({ theme }) => theme.colors["base-post"]};
